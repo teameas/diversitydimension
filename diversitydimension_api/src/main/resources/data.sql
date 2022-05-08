@@ -1,0 +1,1 @@
+INSERT INTO WEB_LOOKUP (web_address, search_keyword, minority_owned, status, last_scan_date) VALUES ('https://sba.com/team/', 'Jane Smith', 'Y', 'Search Complete', parsedatetime('17-09-2012 18:47:52.690', 'dd-MM-yyyy hh:mm:ss.SS'));
