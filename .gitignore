@@ -79,3 +79,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
+app/ui/.gradle/
+app/ui/node_modules/
+app/ui/build/
+app/ui/dist/
