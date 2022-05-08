@@ -1,1 +1,3 @@
 rootProject.name = 'diversitydimension'
+
+include 'api', 'ui'
