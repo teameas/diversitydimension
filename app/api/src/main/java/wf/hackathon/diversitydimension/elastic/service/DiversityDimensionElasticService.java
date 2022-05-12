@@ -1,5 +1,6 @@
 package wf.hackathon.diversitydimension.elastic.service;
 
+import org.elasticsearch.action.index.IndexRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wf.hackathon.diversitydimension.elastic.domain.DiversityDimension;
@@ -20,4 +21,5 @@ public class DiversityDimensionElasticService {
     public void createDiversityDimension(final DiversityDimension diversityDimension) {
         diversityDimensionElasticRepository.save(diversityDimension);
     }
+
 }

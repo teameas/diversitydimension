@@ -7,9 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import wf.hackathon.diversitydimension.elastic.domain.DiversityDimension;
 import wf.hackathon.diversitydimension.elastic.service.DiversityDimensionElasticService;
+import wf.hackathon.diversitydimension.elastic.service.DiversityDimensionService;
 import wf.hackathon.diversitydimension.model.WebLookup;
 import wf.hackathon.diversitydimension.service.WebLookupService;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -21,6 +23,9 @@ public class WebLookupController {
 
     @Autowired
     private DiversityDimensionElasticService diversityDimensionElasticService;
+
+    @Autowired
+    private DiversityDimensionService dimensionService;
 
     @GetMapping
     public ResponseEntity<List<WebLookup>> getAllLookups() {
@@ -40,9 +45,13 @@ public class WebLookupController {
     @PostMapping
     public ResponseEntity<WebLookup> createOrUpdateLoookup(WebLookup lookup) {
         WebLookup updated = service.createOrUpdateLookup(lookup);
-        DiversityDimension diversityDimension = new DiversityDimension();
-        diversityDimension.setName(lookup.getWebAddress());
+        DiversityDimension diversityDimension = new DiversityDimension(lookup.getWebAddress());
         diversityDimensionElasticService.createDiversityDimension(diversityDimension);
+//        try {
+//            dimensionService.indexDocumentJson(diversityDimension);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return new ResponseEntity<WebLookup>(updated, new HttpHeaders(), HttpStatus.OK);
     }
 
