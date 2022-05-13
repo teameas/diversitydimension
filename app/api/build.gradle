@@ -23,6 +23,9 @@ ext {
 dependencies {
 	implementation(project(':ui'))
 	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+	implementation 'co.elastic.clients:elasticsearch-java:8.2.0'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+	implementation 'jakarta.json:jakarta.json-api:2.0.1'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation("com.yugabyte:jdbc-yugabytedb:42.3.3")

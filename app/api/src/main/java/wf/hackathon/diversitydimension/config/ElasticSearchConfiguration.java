@@ -2,6 +2,7 @@ package wf.hackathon.diversitydimension.config;
 
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.http.Header;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -12,6 +13,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 
+import org.apache.http.message.BasicHeader;
 import org.apache.http.ssl.SSLContexts;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
@@ -32,6 +34,8 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @EnableElasticsearchRepositories(basePackages
@@ -49,13 +53,19 @@ public class ElasticSearchConfiguration extends
 //                new HttpHost("35.193.143.25", 9243, "https")
 //        ).build();
 
-        RestClientBuilder builder = RestClient.builder(hosts);
+        Header[] headers = new Header[2];
+        headers[0] = new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/vnd.elasticsearch+json;compatible-with=7");;
+        headers[1] = new BasicHeader(HttpHeaders.ACCEPT, "application/vnd.elasticsearch+json;compatible-with=7");;
+
+
+        RestClientBuilder builder = RestClient.builder(hosts).setDefaultHeaders(headers);
 
         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(AuthScope.ANY,new UsernamePasswordCredentials("ddtest", "Pass1234"));
 
 
-
+//        Accept: "application/vnd.elasticsearch+json;compatible-with=7"
+//        Content-Type: "application/vnd.elasticsearch+json;compatible-with=7"
 
         final SSLContext sslContext;
         try {

@@ -1,6 +1,5 @@
 package wf.hackathon.diversitydimension.elastic.domain;
 
-import com.google.gson.annotations.SerializedName;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -12,10 +11,10 @@ public class DiversityDimension {
     @Id
     private String id;
 
-    @Field(type = FieldType.Keyword)
-    private String name;
+    @Field( type = FieldType.Keyword, name = "business_name")
+    private String businessName;
 
-    public DiversityDimension(String name) {
-        this.name = name;
+    public DiversityDimension(String businessName) {
+        this.businessName = businessName;
     }
 }
