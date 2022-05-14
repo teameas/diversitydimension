@@ -23,8 +23,11 @@ ext {
 dependencies {
 	implementation(project(':ui'))
 	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
-	implementation 'co.elastic.clients:elasticsearch-java:8.2.0'
+	//implementation 'co.elastic.clients:elasticsearch-java:8.2.0'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//implementation 'org.springframework.data:spring-data-elasticsearch'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.11.4'
 	implementation 'jakarta.json:jakarta.json-api:2.0.1'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -35,7 +38,7 @@ dependencies {
 	//implementation 'com.google.cloud:spring-cloud-gcp-starter'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation("com.yugabyte:testcontainers-yugabytedb:1.0.0-beta-4")
+//	testImplementation("com.yugabyte:testcontainers-yugabytedb:1.0.0-beta-4")
 }
 
 dependencyManagement {

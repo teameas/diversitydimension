@@ -25,6 +25,7 @@ import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
+import org.springframework.http.MediaType;
 
 import javax.net.ssl.SSLContext;
 import java.io.*;
@@ -46,12 +47,8 @@ public class ElasticSearchConfiguration extends
     @Override
     @Bean
     public RestHighLevelClient elasticsearchClient() {
-
         HttpHost[] hosts = new HttpHost[1];
         hosts[0] = new HttpHost("testdeployment-de5f04.es.us-central1.gcp.cloud.es.io", 9243, "https");
-//        RestClient httpClient = RestClient.builder(
-//                new HttpHost("35.193.143.25", 9243, "https")
-//        ).build();
 
         Header[] headers = new Header[2];
         headers[0] = new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/vnd.elasticsearch+json;compatible-with=7");;
@@ -60,12 +57,10 @@ public class ElasticSearchConfiguration extends
 
         RestClientBuilder builder = RestClient.builder(hosts).setDefaultHeaders(headers);
 
+
         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(AuthScope.ANY,new UsernamePasswordCredentials("ddtest", "Pass1234"));
 
-
-//        Accept: "application/vnd.elasticsearch+json;compatible-with=7"
-//        Content-Type: "application/vnd.elasticsearch+json;compatible-with=7"
 
         final SSLContext sslContext;
         try {
@@ -81,79 +76,17 @@ public class ElasticSearchConfiguration extends
                             new TrustSelfSignedStrategy())
                     .build();
             builder.setHttpClientConfigCallback(httpClientBuilder -> {
-                httpClientBuilder.disableAuthCaching();
+                //httpClientBuilder.disableAuthCaching();
                 httpClientBuilder.setSSLContext(sslContext);
                 return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
             });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        RestHighLevelClient RestHighLevelClient = new RestHighLevelClient(builder);
 
-        return RestHighLevelClient;
+        RestHighLevelClient restHighLevelClient = new RestHighLevelClient(builder);
+
+        return restHighLevelClient;
     }
-//    public RestHighLevelClient elasticsearchClient() {
-//
-//          HttpHost[] hosts = new HttpHost[1];
-//        hosts[0] = new HttpHost("testdeployment-de5f04.es.us-central1.gcp.cloud.es.io", 9243, "https");
-////        RestClient httpClient = RestClient.builder(
-////                new HttpHost("35.193.143.25", 9243, "https")
-////        ).build();
-//
-//        RestClientBuilder builder = RestClient.builder(hosts);
-//
-//            CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-//            credentialsProvider.setCredentials(AuthScope.ANY,new UsernamePasswordCredentials("ddtest", "Pass1234"));
-//
-//
-//
-//
-//        final SSLContext sslContext;
-//        try {
-//            sslContext = SSLContexts.custom()
-//                    .loadTrustMaterial(new File("C:\\Users\\vinay\\Hackathon\\code\\cert\\my_keystore.jks"), "password".toCharArray(),
-//                            new TrustSelfSignedStrategy())
-//                    .build();
-//            builder.setHttpClientConfigCallback(httpClientBuilder -> {
-//                httpClientBuilder.disableAuthCaching();
-//                httpClientBuilder.setSSLContext(sslContext);
-//                return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
-//            });
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        } catch (KeyManagementException e) {
-//            e.printStackTrace();
-//        } catch (KeyStoreException e) {
-//            e.printStackTrace();
-//        } catch (CertificateException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        RestHighLevelClient RestHighLevelClient = new RestHighLevelClient(builder);
-//
-//        return RestHighLevelClient;
-//    }
-
-//    public RestHighLevelClient elasticsearchClient() {
-//
-//        HttpHost[] hosts = new HttpHost[1];
-//        hosts[0] = new HttpHost("35.193.143.25", 9243, "https");
-////        RestClient httpClient = RestClient.builder(
-////                new HttpHost("35.193.143.25", 9243, "https")
-////        ).build();
-//
-//        RestClientBuilder builder = RestClient.builder(hosts);
-//
-//        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-//        credentialsProvider.setCredentials(AuthScope.ANY,new UsernamePasswordCredentials("ddtest", "Pass1234"));
-//        builder.setHttpClientConfigCallback(httpClientBuilder -> {
-//            httpClientBuilder.disableAuthCaching();
-//            return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
-//        });
-//        RestHighLevelClient RestHighLevelClient = new RestHighLevelClient(builder);
-//
-//        return RestHighLevelClient;
-//    }
 }

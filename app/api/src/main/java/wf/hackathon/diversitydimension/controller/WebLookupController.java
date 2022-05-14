@@ -44,15 +44,16 @@ public class WebLookupController {
 
     @PostMapping
     public ResponseEntity<WebLookup> createOrUpdateLoookup(WebLookup lookup) {
-        WebLookup updated = service.createOrUpdateLookup(lookup);
-        DiversityDimension diversityDimension = new DiversityDimension(lookup.getWebAddress());
+        //WebLookup updated = service.createOrUpdateLookup(lookup);
+        DiversityDimension diversityDimension = new DiversityDimension("test.com");
         diversityDimensionElasticService.createDiversityDimension(diversityDimension);
+//        dimensionService.indexDocument(diversityDimension);
 //        try {
 //            dimensionService.indexDocumentJson(diversityDimension);
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        return new ResponseEntity<WebLookup>(updated, new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity<WebLookup>(lookup, new HttpHeaders(), HttpStatus.OK);
     }
 
 }

@@ -20,6 +20,7 @@ public class DiversityDimensionService {
 
     private static final String DD_INDEX = "diversitydimension";
 
+    @Autowired
     private ElasticsearchOperations elasticsearchOperations;
 
     @Autowired
