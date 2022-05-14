@@ -62,18 +62,18 @@ public class WebLookupController {
         return new ResponseEntity<LookupResponse>(response, new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PostMapping("/updateMinorityIndicator")
+    @PostMapping("/updateMinorityOwnership")
     public ResponseEntity<LookupResponse> updateMinorityIndicator(@RequestBody LookupDto diversityDimensionDto) {
-        //WebLookup updated = service.createOrUpdateLookup(lookup);
-        //DiversityDimension diversityDimension = new DiversityDimension("test.com");
-        //diversityDimensionElasticService.createDiversityDimension(diversityDimension);
-        String id = diversityDimensionElasticService.createDiversityDimension(diversityDimensionDto);
-//        dimensionService.indexDocument(diversityDimension);
-//        try {
-//            dimensionService.indexDocumentJson(diversityDimension);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        String id = dimensionService.updateMinorityIndicator(diversityDimensionDto);
+        LookupResponse response = new LookupResponse();
+        response.setId(id);
+        response.setDnsName(diversityDimensionDto.getDunsName());
+        return new ResponseEntity<LookupResponse>(response, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @PostMapping("/updateWomenOwnership")
+    public ResponseEntity<LookupResponse> updateWomenOwnership(@RequestBody LookupDto diversityDimensionDto) {
+        String id = dimensionService.updateWomenIndicator(diversityDimensionDto);
         LookupResponse response = new LookupResponse();
         response.setId(id);
         response.setDnsName(diversityDimensionDto.getDunsName());

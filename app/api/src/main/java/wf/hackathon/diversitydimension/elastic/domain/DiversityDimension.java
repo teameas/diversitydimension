@@ -11,10 +11,11 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Document(indexName = "diversitydimension")
 public class DiversityDimension {
 
+    public static final String BUS_NAME = "business_name";
     @Id
     private String id;
 
-    @Field( type = FieldType.Keyword, fielddata = true, name = "business_name")
+    @Field( type = FieldType.Keyword, fielddata = true, name = BUS_NAME)
     private String dunsName;
     @Field( type = FieldType.Text, fielddata = true )
     private String webAddress;
