@@ -1,18 +1,14 @@
 package wf.hackathon.diversitydimension.config;
 
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.http.Header;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-
 import org.apache.http.message.BasicHeader;
 import org.apache.http.ssl.SSLContexts;
 import org.elasticsearch.client.RestClient;
@@ -21,22 +17,12 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.elasticsearch.client.ClientConfiguration;
-import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
-import org.springframework.http.MediaType;
 
 import javax.net.ssl.SSLContext;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.security.KeyManagementException;
+import java.io.InputStream;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 @EnableElasticsearchRepositories(basePackages

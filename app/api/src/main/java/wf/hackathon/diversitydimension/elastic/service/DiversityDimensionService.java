@@ -22,7 +22,7 @@ import java.io.IOException;
 @Service
 public class DiversityDimensionService {
 
-    private static final String DD_INDEX = "diversitydimension";
+    private static final String DD_INDEX = "search-diversitydimension-api";
 
     @Autowired
     private ElasticsearchOperations elasticsearchOperations;

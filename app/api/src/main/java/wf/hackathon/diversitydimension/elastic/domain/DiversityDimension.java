@@ -8,7 +8,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-@Document(indexName = "diversitydimension")
+@Document(indexName = "search-diversitydimension-api")
 public class DiversityDimension {
 
     public static final String BUS_NAME = "business_name";
@@ -41,7 +41,10 @@ public class DiversityDimension {
     private String isLgbtqiaPlus;
     @Field( type = FieldType.Keyword, fielddata = true )
     private String isVeteran;
-
+    @Field( type = FieldType.Keyword, fielddata = true )
+    private String executivieContact1;
+    @Field( type = FieldType.Keyword, fielddata = true )
+    private String executivieContact2;
     //@JsonProperty("business_name")
 //    @Field( type = FieldType.Keyword, fielddata = true )
 //    private String businessName;
@@ -160,5 +163,21 @@ public class DiversityDimension {
 
     public void setIsVeteran(String isVeteran) {
         this.isVeteran = isVeteran;
+    }
+
+    public String getExecutivieContact1() {
+        return executivieContact1;
+    }
+
+    public void setExecutivieContact1(String executivieContact1) {
+        this.executivieContact1 = executivieContact1;
+    }
+
+    public String getExecutivieContact2() {
+        return executivieContact2;
+    }
+
+    public void setExecutivieContact2(String executivieContact2) {
+        this.executivieContact2 = executivieContact2;
     }
 }

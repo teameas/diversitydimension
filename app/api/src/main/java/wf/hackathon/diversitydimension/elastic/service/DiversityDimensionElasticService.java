@@ -38,6 +38,8 @@ public class DiversityDimensionElasticService {
         dd.setState(dto.getState());
         dd.setZip(dto.getZip());
         dd.setOwnership(dto.getOwnership());
+        dd.setExecutivieContact1(dto.getExecutivieContact1());
+        dd.setExecutivieContact2(dto.getExecutivieContact2());
 
 
         diversityDimensionElasticRepository.save(dd);

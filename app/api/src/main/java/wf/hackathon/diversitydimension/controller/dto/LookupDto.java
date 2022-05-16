@@ -1,5 +1,8 @@
 package wf.hackathon.diversitydimension.controller.dto;
 
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
 public class LookupDto {
 
     private String dunsName;
@@ -15,6 +18,8 @@ public class LookupDto {
     private String isDisabled;
     private String isLgbtqiaPlus;
     private String isVeteran;
+    private String executivieContact1;
+    private String executivieContact2;
 
     public String getDunsName() {
         return dunsName;
@@ -118,5 +123,21 @@ public class LookupDto {
 
     public void setIsVeteran(String isVeteran) {
         this.isVeteran = isVeteran;
+    }
+
+    public String getExecutivieContact1() {
+        return executivieContact1;
+    }
+
+    public void setExecutivieContact1(String executivieContact1) {
+        this.executivieContact1 = executivieContact1;
+    }
+
+    public String getExecutivieContact2() {
+        return executivieContact2;
+    }
+
+    public void setExecutivieContact2(String executivieContact2) {
+        this.executivieContact2 = executivieContact2;
     }
 }
